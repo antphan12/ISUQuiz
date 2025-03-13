@@ -8,6 +8,7 @@
 import SwiftUI
 import Foundation
 
+// Refactored to condense Button
 struct ChoiceTextView: View {
     let choiceText: String
     let accentColor = Color(red: 241/255, green: 190/255, blue: 72/255)

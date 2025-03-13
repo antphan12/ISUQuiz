@@ -18,13 +18,12 @@ struct ContentView: View {
     
     
     // Colors of the app
-    let mainColor = Color(red: 200/255, green: 16/255, blue: 46/255)
-    let accentColor = Color(red: 241/255, green: 190/255, blue: 72/255)
+   @State var mainColor = Color(red: 200/255, green: 16/255, blue: 46/255)
+    var accentColor = Color(red: 241/255, green: 190/255, blue: 72/255)
     
     var body: some View {
         ZStack{
             mainColor.ignoresSafeArea()
-    
             VStack{
                 Text("1 / 10")
                     .font(.callout)
@@ -35,44 +34,27 @@ struct ContentView: View {
                     .bold()
                     .multilineTextAlignment(.center)
                 Spacer()
-                VStack{
-                    Button(action: {
-                        print("Tapped on Choice 1, Wrong")
-                    }, label: {
-                        // Choice: 1845
-                        ChoiceTextView(choiceText: question.possibleAnswers[0])
-                    })
-                    
-                    Button(action: {
-                        print("Tapped on Choice 2, Correct")
-                    }, label: {
-                        // Choice: 1858
-                        ChoiceTextView(choiceText: question.possibleAnswers[1])
-                    })
-                    
-                    Button(action: {
-                        print("Tapped on Choice 3, Wrong")
-                    }, label: {
-                        // Choice: 1869
-                        ChoiceTextView(choiceText: question.possibleAnswers[2])
-                    })
-                    
-                    Button(action: {
-                        print("Tapped on Choice 4, Wrong")
-                    }, label: {
-                        // Choice: 1876
-                        ChoiceTextView(choiceText: question.possibleAnswers[3])
-                    })
+                
+                // Change from HStack to VStack for looks
+                VStack {
+                    ForEach(0..<question.possibleAnswers.count) {answerIndex in
+                        Button(action: {
+                            print("Tapped on option with the text \(question.possibleAnswers[answerIndex])")
+                            mainColor = answerIndex == question.correctAnswerIndex ? .green : .black
+                        }, label: {
+                            ChoiceTextView(choiceText: question.possibleAnswers[answerIndex])
+                        })
+                    }
+                    Spacer()
                 }
-                Spacer()
             }
+            .foregroundColor(.white)
         }
-        .foregroundColor(.white)
     }
-}
-
-struct Preview: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    
+    struct Preview: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
     }
 }
