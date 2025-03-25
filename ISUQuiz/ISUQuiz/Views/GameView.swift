@@ -17,8 +17,7 @@ struct GameView: View {
 )
 
     // Colors of the app
-    @State var mainColor = Color(red: 200 / 255, green: 16 / 255, blue: 46 / 255)
-    var accentColor = Color(red: 241 / 255, green: 190 / 255, blue: 72 / 255)
+    @State var mainColor = GameColor.mainColor
 
     var body: some View {
         ZStack {
