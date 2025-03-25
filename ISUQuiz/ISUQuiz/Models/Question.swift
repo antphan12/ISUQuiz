@@ -13,6 +13,14 @@ struct Question: Hashable {
     let correctAnswerIndex: Int
     
     static var allQuestions = [
+        Question(questionText: "What year was Iowa State University founded?",
+                 possibleAnswers: [
+                    "1845",
+                    "1858",
+                    "1869",
+                    "1876",
+                 ],
+                 correctAnswerIndex: 1),
         Question(questionText: "What is the official mascot of Iowa State University?",
                  possibleAnswers: [
                     "Cy the Cardinal",
